@@ -290,6 +290,9 @@ libunbound.la:	$(LIBUNBOUND_OBJ_LINK)
 unbound$(EXEEXT):	$(DAEMON_OBJ_LINK) libunbound.la
 	$(LINK) -o $@ $(DAEMON_OBJ_LINK) $(EXTRALINK) -lssl $(LIBS)
 
+libunbound_daemon.la:	$(DAEMON_OBJ_LINK) libunbound.la
+	$(LINK_LIB) -o $@ $(DAEMON_OBJ_LINK) -rpath $(libdir) $(EXTRALINK) -lssl $(LIBS)
+
 unbound-checkconf$(EXEEXT):	$(CHECKCONF_OBJ_LINK) libunbound.la
 	$(LINK) -o $@ $(CHECKCONF_OBJ_LINK) $(EXTRALINK) -lssl $(LIBS)
 
@@ -394,6 +397,7 @@ util/configparser.c util/configparser.h:  $(srcdir)/util/configparser.y
 clean:
 	rm -f *.o *.d *.lo *~ tags
 	rm -f unbound$(EXEEXT) unbound-checkconf$(EXEEXT) unbound-host$(EXEEXT) unbound-control$(EXEEXT) unbound-anchor$(EXEEXT) unbound-control-setup libunbound.la unbound.h
+	rm -f libunbound_daemon.la
 	rm -f $(ALL_SRC:.c=.lint)
 	rm -f _unbound.la libunbound/python/libunbound_wrap.c libunbound/python/unbound.py pythonmod/interface.h pythonmod/unboundmodule.py
 	rm -rf autom4te.cache .libs build doc/html doc/xml
