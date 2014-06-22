@@ -1,6 +1,4 @@
-*.la
-*.lo
-*.o
+build-*
 
 doc/*.1
 doc/*.3
