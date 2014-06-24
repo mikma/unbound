@@ -293,6 +293,9 @@ unbound$(EXEEXT):	$(DAEMON_OBJ_LINK) libunbound.la
 libunbound_daemon.la:	$(DAEMON_OBJ_LINK) libunbound.la
 	$(LINK_LIB) -o $@ $(DAEMON_OBJ_LINK) -rpath $(libdir) $(EXTRALINK) -lssl $(LIBS)
 
+libunbound_anchor.la:	$(UBANCHOR_OBJ_LINK) libunbound.la
+	$(LINK) -o $@ $(UBANCHOR_OBJ_LINK) -rpath $(libdir) $(EXTRALINK) -L. -L.libs -lunbound -lexpat -lssl $(LIBS)
+
 unbound-checkconf$(EXEEXT):	$(CHECKCONF_OBJ_LINK) libunbound.la
 	$(LINK) -o $@ $(CHECKCONF_OBJ_LINK) $(EXTRALINK) -lssl $(LIBS)
 

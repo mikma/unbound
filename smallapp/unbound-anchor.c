@@ -137,6 +137,10 @@
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
 
+#ifdef ANDROID
+# define main unbound_anchor_main
+#endif
+
 /** name of server in URL to fetch HTTPS from */
 #define URLNAME "data.iana.org"
 /** path on HTTPS server to xml file */

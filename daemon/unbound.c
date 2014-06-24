@@ -102,6 +102,10 @@
 #  include "nss.h"
 #endif
 
+#ifdef ANDROID
+# define main unbound_daemon_main
+#endif
+
 #ifdef HAVE_SBRK
 /** global debug value to keep track of heap memory allocation */
 void* unbound_start_brk = 0;
